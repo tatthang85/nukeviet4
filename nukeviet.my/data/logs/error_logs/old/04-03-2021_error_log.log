@@ -1,0 +1,24 @@
+[Thu, 04 Mar 2021 17:37:35 +0700] [nukeviet.my] [127.0.0.1] [Notice(8): Undefined variable: xhtml_city] [FILE: /modules/samples/admin/main.php] [LINE: 22]
+[Fri, 05 Mar 2021 01:05:14 +0700] [nukeviet.my] [127.0.0.1] [Notice(8): Undefined variable: xhtml_city] [FILE: /modules/samples/admin/main.php] [LINE: 25]
+[Fri, 05 Mar 2021 01:05:14 +0700] [nukeviet.my] [127.0.0.1] [Warning(2): Use of undefined constant nv_module_name - assumed 'nv_module_name' (this will throw an Error in a future version of PHP)] [FILE: /modules/samples/admin/main.php] [LINE: 28]
+[Fri, 05 Mar 2021 01:05:14 +0700] [nukeviet.my] [127.0.0.1] [Notice(8): Undefined variable: selected_city] [FILE: /modules/samples/admin/main.php] [LINE: 29]
+[Fri, 05 Mar 2021 01:05:14 +0700] [nukeviet.my] [127.0.0.1] [Error(1): Uncaught PDOException: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1 in C:\xampp\htdocs\nukeviet.my\vendor\vinades\nukeviet\Core\Database.php:495
+Stack trace:
+#0 C:\xampp\htdocs\nukeviet.my\vendor\vinades\nukeviet\Core\Database.php(495): PDO->query('SELECT `maqh`, ...')
+#1 C:\xampp\htdocs\nukeviet.my\modules\samples\admin\main.php(30): NukeViet\Core\Database->query('SELECT `maqh`, ...')
+#2 C:\xampp\htdocs\nukeviet.my\admin\index.php(175): require('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown] [FILE: /vendor/vinades/nukeviet/Core/Database.php] [LINE: 495]
+[Fri, 05 Mar 2021 01:19:53 +0700] [nukeviet.my] [127.0.0.1] [Notice(8): Undefined variable: xhtml_district] [FILE: /modules/samples/admin/main.php] [LINE: 139]
+[Fri, 05 Mar 2021 01:20:57 +0700] [nukeviet.my] [127.0.0.1] [Notice(8): Undefined variable: xhtml_district] [FILE: /modules/samples/admin/main.php] [LINE: 140]
+[Fri, 05 Mar 2021 01:21:33 +0700] [nukeviet.my] [127.0.0.1] [Notice(8): Undefined variable: selected_city] [FILE: /modules/samples/admin/main.php] [LINE: 155]
+[Fri, 05 Mar 2021 01:22:17 +0700] [nukeviet.my] [127.0.0.1] [Notice(8): Undefined variable: xhtml_district] [FILE: /modules/samples/admin/main.php] [LINE: 134]
+[Fri, 05 Mar 2021 01:22:17 +0700] [nukeviet.my] [127.0.0.1] [Notice(8): Undefined variable: selected_city] [FILE: /modules/samples/admin/main.php] [LINE: 149]
+[Fri, 05 Mar 2021 01:32:26 +0700] [nukeviet.my] [127.0.0.1] [Notice(8): Undefined variable: xhtml_district] [FILE: /modules/samples/admin/main.php] [LINE: 133]
+[Fri, 05 Mar 2021 01:32:26 +0700] [nukeviet.my] [127.0.0.1] [Notice(8): Undefined variable: selected_city] [FILE: /modules/samples/admin/main.php] [LINE: 148]
+[Fri, 05 Mar 2021 03:19:24 +0700] [nukeviet.my] [127.0.0.1] [Notice(8): Undefined variable: selected_city] [FILE: /modules/samples/admin/main.php] [LINE: 138]
+[Fri, 05 Mar 2021 03:26:54 +0700] [nukeviet.my] [127.0.0.1] [Warning(2): include(C:/xampp/htdocs/nukeviet.my/modules/samples/send_cityName.php): failed to open stream: No such file or directory] [FILE: /modules/samples/admin/main.php] [LINE: 148]
+[Fri, 05 Mar 2021 04:14:24 +0700] [nukeviet.my] [127.0.0.1] [Notice(8): Undefined variable: xhtml_district] [FILE: /modules/samples/admin/main.php] [LINE: 135]
+[Fri, 05 Mar 2021 04:15:28 +0700] [nukeviet.my] [127.0.0.1] [Notice(8): Undefined variable: xhtml_district] [FILE: /modules/samples/admin/main.php] [LINE: 136]
+[Fri, 05 Mar 2021 04:53:54 +0700] [nukeviet.my] [127.0.0.1] [Notice(8): Undefined variable: xhtml_district] [FILE: /modules/samples/admin/main.php] [LINE: 126]
+[Fri, 05 Mar 2021 04:53:54 +0700] [nukeviet.my] [127.0.0.1] [Notice(8): Undefined variable: selected_city] [FILE: /modules/samples/admin/main.php] [LINE: 131]

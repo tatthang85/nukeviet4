@@ -1,0 +1,17 @@
+[Fri, 05 Mar 2021 21:08:39 +0700] [nukeviet.my] [127.0.0.1] [Notice(8): Undefined variable: xhtml_city] [FILE: /modules/samples/admin/main.php] [LINE: 25]
+[Fri, 05 Mar 2021 21:08:39 +0700] [nukeviet.my] [127.0.0.1] [Notice(8): Undefined variable: selected_city] [FILE: /modules/samples/admin/main.php] [LINE: 131]
+[Fri, 05 Mar 2021 21:22:39 +0700] [nukeviet.my] [127.0.0.1] [Error(1): Uncaught Error: Function name must be a string in C:\xampp\htdocs\nukeviet.my\modules\samples\admin\main.php:29
+Stack trace:
+#0 C:\xampp\htdocs\nukeviet.my\admin\index.php(175): require()
+#1 {main}
+  thrown] [FILE: /modules/samples/admin/main.php] [LINE: 29]
+[Fri, 05 Mar 2021 21:42:56 +0700] [nukeviet.my] [127.0.0.1] [Notice(8): Undefined variable: selected_city] [FILE: /modules/samples/admin/main.php] [LINE: 132]
+[Fri, 05 Mar 2021 21:42:56 +0700] [nukeviet.my] [127.0.0.1] [Notice(8): Undefined variable: test] [FILE: /modules/samples/admin/main.php] [LINE: 133]
+[Fri, 05 Mar 2021 23:34:52 +0700] [nukeviet.my] [127.0.0.1] [Error(1): Uncaught Error: Function name must be a string in C:\xampp\htdocs\nukeviet.my\modules\samples\admin\main.php:30
+Stack trace:
+#0 C:\xampp\htdocs\nukeviet.my\admin\index.php(175): require()
+#1 {main}
+  thrown] [FILE: /modules/samples/admin/main.php] [LINE: 30]
+[Fri, 05 Mar 2021 23:35:31 +0700] [nukeviet.my] [127.0.0.1] [Notice(8): Undefined variable: test] [FILE: /modules/samples/admin/main.php] [LINE: 134]
+[Fri, 05 Mar 2021 23:37:58 +0700] [nukeviet.my] [127.0.0.1] [Notice(8): Undefined variable: test] [FILE: /modules/samples/admin/main.php] [LINE: 135]
+[Sat, 06 Mar 2021 01:49:33 +0700] [nukeviet.my] [127.0.0.1] [Notice(8): Undefined variable: xhtml_district] [FILE: /modules/samples/admin/main.php] [LINE: 125]
