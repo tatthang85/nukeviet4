@@ -14,31 +14,37 @@ if (!defined('NV_IS_FILE_ADMIN')) {
 
 $page_title = $lang_module['main'];
 
-$city_selected_first = 'selected';
-$city_selected_last = '';
-$district_selected_first = 'selected';
-$district_selected_last = '';
+$post = $error = [];
 
-$sql_city = "SELECT `matp`, `name` FROM `nv4_vi_tinhthanhpho`";
-$result_city = $db->query($sql_city);
-while ($row_city = $result_city->fetch()) {
-    $xhtml_city .= '<option value="'.$row_city['matp'].'">'.$row_city['name'].'</option>';
+try{
+if ($nv_Request->isset_request("change_city", "post,get")) {
+    $id_city = $nv_Request->get_int('id_city', "post,get");
+    if ($id_city != '') {
+        $sql = "SELECT maqh, name FROM `nv4_vi_quanhuyen` WHERE matp =" . $id_city . " ORDER BY maqh ASC";
+        $result = $db->query($sql);
+        $html = '<option value="0">Chọn tên quận / huyện</option>';
+        while ($district = $result->fetch()) {
+            $html .= '<option value=" ' . $district['maqh'] . ' ">' . $district['name'] . '</option>';
+        }
+        die($html);
+    }else {
+        die("ERROR");
+    }
+}
+}catch (PDOException $e){
+    print_r($e);die;
 }
 
+if ($nv_Request->isset_request("submit", "post")) {
+    $post['fullName'] = $nv_Request->get_title('fullName', 'post', '');
+    $post['email'] = $nv_Request->get_title('email', 'post', '');
+    $post['phone'] = $nv_Request->get_title('phone', 'post', '');
+    $post['sex'] = $nv_Request->get_title('sex', 'post', '');
+    $post['city'] = $nv_Request->get_title('city', 'post', '');
+    $post['district'] = $nv_Request->get_title('district', 'post', '');
+    $post['submit'] = $nv_Request->get_title('submit', 'post', '');
+}
 
-
-
-$check = '';
-$uncheck = '';
-$post = [];
-$error = [];
-$post['fullName'] = $nv_Request->get_title('fullName', 'post', '');
-$post['email'] = $nv_Request->get_title('email', 'post', '');
-$post['phone'] = $nv_Request->get_title('phone', 'post', '');
-$post['sex'] = $nv_Request->get_title('sex', 'post', '');
-$post['city'] = $nv_Request->get_title('city', 'post', '');
-$post['district'] = $nv_Request->get_title('district', 'post', '');
-$post['submit'] = $nv_Request->get_title('submit', 'post', '');
 if (!empty($post['submit'])) {
     if(empty($post['fullName'])){
         $error[] = 'Lỗi chưa nhập họ và tên';
@@ -46,61 +52,66 @@ if (!empty($post['submit'])) {
 
     if(empty($post['email'])){
         $error[] = 'Lỗi chưa nhập email';
+    } elseif (!preg_match("/^(.*?)&(.*?)&/", $post['email'])){
+        $error['Email chưa đúng quy tắc'];
     }
 
     if(empty($post['phone'])){
         $error[] = 'Lỗi chưa nhập số điện thoại';
+    } elseif (!preg_match('/[0-9]{10|11}/', $post['phone'])){
+        $error['Số điện thoại chưa đúng quy tắc'];
     }
 
-    if(empty($post['sex'])){
+    if($post['sex'] == 3){
         $error[] = 'Lỗi chưa chọn giới tính';
     }
 
-    if(empty($post['city'])){
-        $error[] = 'Lỗi chưa nhập địa chỉ - tên thành phố / tỉnh';
-    }else {
-        $sql_city = "SELECT `matp`, `name` FROM `nv4_vi_tinhthanhpho`";
-        $result_city = $db->query($sql_city);
-        while ($row_city = $result_city->fetch()) {
-            if ($post['city'] == $row_city['matp']) {
-                $city_selected_last = 'selected';
-                $city_selected_first = '';
-                $xhtml_city .= '<option '.$city_selected_last.' value="'.$row_city['matp'].'">'.$row_city['name'].'</option>';
-            }else {
-                $xhtml_city .= '<option value="'.$row_city['matp'].'">'.$row_city['name'].'</option>';
-            }
-        }
+    if($post['city'] == 0){
+        $error[] = 'Lỗi chưa chọn tỉnh / thành phố';
     }
 
-    if(empty($post['district'])){
-        $error[] = 'Lỗi chưa nhập địa chỉ - tên quận / huyện';
-    }else {
-        $sql_district = "SELECT `maqh`, `name` FROM `nv4_vi_quanhuyen` WHERE `matp` = ".$selected_city."";
-        $result_district = $db->query($sql_district);
-        while ($row_district = $result_district->fetch()) {
-            if ($post['district'] == $row_district['maqh']) {
-                $district_selected_last = 'selected';
-                $district_selected_first = '';
-                $xhtml_district .= '<option '.$district_selected_last.' value="'.$row_district['maqh'].'">'.$row_district['name'].'</option>';
-            }else {
-                $xhtml_district .= '<option value="'.$row_district['maqh'].'">'.$row_district['name'].'</option>';
-            }
-        }
+    if($post['district'] == 0){
+        $error[] = 'Lỗi chưa chọn quận / huyện';
     }
 
     if (empty($error)) {
-        $sql = "INSERT INTO `nv4_vi_samples`(`id`, `fullName`, `email`, `phone`, `sex`, `city`, `district`) VALUES (NULL,'".$post['fullName']."','".$post['email']."','".$post['phone']."','".$post['sex']."','".$post['city']."','".$post['district']."')";
-        $db->query($sql);
+        $sql = "INSERT INTO `nv4_vi_samples`(`fullName`, `email`, `phone`, `sex`, `city`, `district`, `active`, `addtime`, `updatetime`, `weight`) VALUES (:fullName,:email,:phone,:sex,:city,:district,:active,:addtime,:updatetime,:weight)";
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam("fullName", $post['fullName']);
+        $stmt->bindParam("email", $post['email']);
+        $stmt->bindParam("phone", $post['phone']);
+        $stmt->bindParam("sex", $post['sex']);
+        $stmt->bindParam("city", $post['city']);
+        $stmt->bindParam("district", $post['district']);
+        $stmt->bindValue("active", 1);
+        $stmt->bindValue("addtime", NV_CURRENTTIME);
+        $stmt->bindValue("updatetime", 0);
+        $stmt->bindValue("weight", 1);
+        $exe = $stmt->execute();
+        if ($exe) {
+            $error[] = "Insert ok";
+        }else {
+            $error[] = "Không insert được";
+        }
     }
+}else {
+    $post['fullName'] = '';
+    $post['email'] = '';
+    $post['phone'] = '';
+    $post['sex'] = 3;
+    $post['city'] = 0;
+    $post['district'] = 0;
+}
 
-    if ($post['sex'] == 'male') {
-        $check = 'checked';
-        $uncheck = '';
-    }else {
-        $check = '';
-        $uncheck = 'checked';
-    }
-
+try{
+$sql = "SELECT matp, name FROM `nv4_vi_tinhthanhpho` ORDER BY matp ASC";
+$result = $db->query($sql);
+$array_city = [];
+while ($city = $result->fetch()) {
+    $array_city[$city['matp']] = $city;
+}
+}catch (PDOException $e){
+    print_r($e);die;
 }
 
 //------------------------------
@@ -116,19 +127,35 @@ $xtpl->assign('NV_NAME_VARIABLE', NV_NAME_VARIABLE);
 $xtpl->assign('NV_OP_VARIABLE', NV_OP_VARIABLE);
 $xtpl->assign('MODULE_NAME', $module_name);
 $xtpl->assign('OP', $op);
+
+$array_sex = [];
+$array_sex [1] = "Nam";
+$array_sex [2] = "Nữ";
+$array_sex [3] = "N/A";
+
+foreach ($array_sex as $key => $sex) {
+    $xtpl->assign('SEX', array(
+        'key' => $key,
+        'title' => $sex,
+        'checked' => $key == $post['sex'] ? 'checked="checked"' : ''
+    ));
+    $xtpl->parse('main.sex');
+}
+
+foreach ($array_city as $key => $city) {
+    $xtpl->assign('CITY', array(
+        'key' => $key,
+        'title' => $city['name'],
+        'selected' => $key == $post['city'] ? 'selected="selected"' : ''
+    ));
+    $xtpl->parse('main.city');
+}
+
 $xtpl->assign('POST', $post);
 $xtpl->assign('ERROR', implode('<br>', $error));
 if(!empty($error)){
     $xtpl->parse('main.error');
 }
-$xtpl->assign('CITY', $xhtml_city);
-$xtpl->assign('DISTRICT', $xhtml_district);
-$xtpl->assign('CHECK', $check);
-$xtpl->assign('UNCHECK', $uncheck);
-$xtpl->assign('CITY_SELECTED', $city_selected_first);
-$xtpl->assign('DISTRICT_SELECTED', $district_selected_first);
-
-
 
 //-------------------------------
 // Viết code xuất ra site vào đây
@@ -138,7 +165,6 @@ $xtpl->parse('main');
 $contents = $xtpl->text('main');
 
 include NV_ROOTDIR . '/includes/header.php';
-
 echo nv_admin_theme($contents);
 include NV_ROOTDIR . '/includes/footer.php';
 ?>

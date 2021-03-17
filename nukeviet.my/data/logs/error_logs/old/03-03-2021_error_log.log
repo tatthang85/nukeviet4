@@ -1,2 +1,0 @@
-[Wed, 03 Mar 2021 22:13:23 +0700] [nukeviet.my] [127.0.0.1] [Notice(8): Undefined variable: xhtml_city] [FILE: /modules/samples/admin/main.php] [LINE: 20]
-[Wed, 03 Mar 2021 23:04:10 +0700] [nukeviet.my] [127.0.0.1] [Notice(8): Undefined variable: xhtml_city] [FILE: /modules/samples/admin/main.php] [LINE: 22]

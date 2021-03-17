@@ -14,8 +14,8 @@ $(document).ready(function() {
 
 function sendcityname() {
     var city = document.getElementById('city').value;
-    $.post(script_name + '?' + nv_name_variable + '=' + nv_module_name + '&' + nv_fc_variable + '=sendcityname&nocache=' + new Date().getTime(), 'selected_city=' + city, function(data) {
-        $("#district").html(data);
+    $.post(script_name + '?' + nv_name_variable + '=' + nv_module_name + '&' + nv_fc_variable + '=main&nocache=' + new Date().getTime(), 'selected_city=' + city, function(data) {
+        $("#test").html(data);
     });
     return;
 }

@@ -27,26 +27,53 @@
     <div class="form-group row">
         <div class="col-sm-6">
             <label for="sex">Giới tính:</label>
-            Nam <input {CHECK} class="form-check-input" id="male" type ="radio" name ="sex" value = "male">
-            Nữ <input {UNCHECK} class="form-check-input" id="female" type ="radio" name ="sex" value = "female">
+        </div>
+        <div class="col-md-20">
+<!-- BEGIN: sex -->
+            <input class="form-control" id="male" type ="radio" name ="sex" value = "{SEX.key}" {SEX.checked}> {SEX.title}
+<!-- END: sex -->
         </div>
     </div>
     <div>
         <div class="form-group row">
             <div class="col-sm-8">
                 <label>Địa chỉ:</label>
-                <select id="city" name="city" class="custom-select mb-3">
-                    <option value="" {CITY_SELECTED}>Chọn tên thành phố / tỉnh</option>
-            		{CITY}
+            </div>
+            <div class="col-md-20 form-inline">
+                <select id="city" name="city" class="form-control" onchange="change_city()">
+                    <option value="0">Chọn tên thành phố / tỉnh</option>
+                    <!-- BEGIN: city -->
+            		<option value="{CITY.key}" {CITY.selected}>{CITY.title}</option>
+                    <!-- END: city -->
                 </select> --
-                <select id="district" name="district" class="custom-select mb-8">
-                    <option value="" {DISTRICT_SELECTED}>Chọn tên quận / huyện</option>
-                    {DISTRICT}
+                <select id="district" name="district" class="form-control">
+                    <option value="0">Chọn tên quận / huyện</option>                  
                 </select>
             </div>
         </div>    
     <div class="form-group"><input class="btn btn-primary" name="submit" type="submit" value="{LANG.save}" /></div>
 </form>
+
+<link rel="stylesheet" href="{NV_BASE_SITEURL}{NV_ASSETS_DIR}/js/select2/select2.min.css">
+<script type="text/javascript" src="{NV_BASE_SITEURL}{NV_ASSETS_DIR}/js/select2/select2.min.js"></script>
+
+<script type="text/javascript">
+    $("#city").select2();
+    $("#district").select2();
+
+    function change_city(){
+        var id_city = $('#city').val();
+        $.ajax({
+            url : script_name + '?' + nv_name_variable + '=' + nv_module_name + '&' + nv_fc_variable + '=main&change_city=1&id_city=' + id_city,
+            success : function(result) {
+                if(result != "ERROR"){
+                    $('#district').html(result);
+                }
+            }
+        });
+       
+    }
+</script>
 
 <!-- END: main -->
 
