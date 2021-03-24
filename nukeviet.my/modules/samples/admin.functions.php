@@ -14,4 +14,16 @@ if (!defined('NV_ADMIN') or !defined('NV_MAINFILE') or !defined('NV_IS_MODADMIN'
 
 define('NV_IS_FILE_ADMIN', true);
 
-$allow_func = ['main', 'config'];
+$allow_func = ['main', 'config', 'list'];
+
+$array_gender = [];
+$array_gender[1] = "Nam";
+$array_gender[2] = "Nữ";
+$array_gender[3] = "N/A";
+
+$sql = "SELECT matp,name FROM `nv4_vi_tinhthanhpho` ORDER BY matp ASC";
+$result = $db->query($sql);
+$array_city = [];
+while ($city = $result->fetch()) {
+    $array_city[$city['matp']] = $city;
+}

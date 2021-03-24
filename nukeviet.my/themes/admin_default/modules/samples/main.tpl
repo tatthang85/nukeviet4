@@ -6,10 +6,11 @@
 
 <p class="h1">THÔNG TIN HỌC VIÊN</p>
 <form action="{NV_BASE_ADMINURL}index.php?{NV_LANG_VARIABLE}={NV_LANG_DATA}&amp;{NV_NAME_VARIABLE}={MODULE_NAME}&amp;{NV_OP_VARIABLE}={OP}" method="post">
+    <input type="hidden" name="id" value="{POST.id}">
     <div class="form-group row">
         <div class="col-sm-6">
             <label for="name">Họ và tên:</label>
-            <input class="form-control" id="name" placeholder="Nhập họ và tên" type ="text" name ="fullName" value = "{POST.fullName}">
+            <input class="form-control" id="name" placeholder="Nhập họ và tên" type ="text" name ="fullName" value = "{POST.fullname}">
         </div>
     </div>
     <div class="form-group row">

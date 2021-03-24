@@ -1,0 +1,32 @@
+[Wed, 17 Mar 2021 20:23:31 +0700] [nukeviet.my] [127.0.0.1] [Notice(8): Undefined variable: xhtml_city] [FILE: /modules/samples/admin/main.php] [LINE: 206]
+[Wed, 17 Mar 2021 20:23:31 +0700] [nukeviet.my] [127.0.0.1] [Notice(8): Undefined variable: xhtml_district] [FILE: /modules/samples/admin/main.php] [LINE: 207]
+[Wed, 17 Mar 2021 20:23:31 +0700] [nukeviet.my] [127.0.0.1] [Notice(8): Undefined variable: check] [FILE: /modules/samples/admin/main.php] [LINE: 208]
+[Wed, 17 Mar 2021 20:23:31 +0700] [nukeviet.my] [127.0.0.1] [Notice(8): Undefined variable: uncheck] [FILE: /modules/samples/admin/main.php] [LINE: 209]
+[Wed, 17 Mar 2021 20:23:31 +0700] [nukeviet.my] [127.0.0.1] [Notice(8): Undefined variable: city_selected_first] [FILE: /modules/samples/admin/main.php] [LINE: 210]
+[Wed, 17 Mar 2021 20:23:31 +0700] [nukeviet.my] [127.0.0.1] [Notice(8): Undefined variable: district_selected_first] [FILE: /modules/samples/admin/main.php] [LINE: 211]
+[Wed, 17 Mar 2021 20:23:31 +0700] [nukeviet.my] [127.0.0.1] [Notice(8): Undefined variable: id_city] [FILE: /modules/samples/admin/main.php] [LINE: 213]
+[Wed, 17 Mar 2021 20:23:31 +0700] [nukeviet.my] [127.0.0.1] [Notice(8): Undefined variable: id_city] [FILE: /modules/samples/admin/main.php] [LINE: 230]
+[Wed, 17 Mar 2021 20:24:15 +0700] [nukeviet.my] [127.0.0.1] [Error(1): Uncaught PDOException: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'BY maqh ASC' at line 1 in C:\xampp\htdocs\nukeviet.my\vendor\vinades\nukeviet\Core\Database.php:495
+Stack trace:
+#0 C:\xampp\htdocs\nukeviet.my\vendor\vinades\nukeviet\Core\Database.php(495): PDO->query('SELECT maqh, na...')
+#1 C:\xampp\htdocs\nukeviet.my\modules\samples\admin\main.php(37): NukeViet\Core\Database->query('SELECT maqh, na...')
+#2 C:\xampp\htdocs\nukeviet.my\admin\index.php(175): require('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown] [FILE: /vendor/vinades/nukeviet/Core/Database.php] [LINE: 495]
+[Wed, 17 Mar 2021 20:46:24 +0700] [nukeviet.my] [127.0.0.1] [Notice(8): Undefined variable: check] [FILE: /modules/samples/admin/main.php] [LINE: 212]
+[Wed, 17 Mar 2021 20:46:24 +0700] [nukeviet.my] [127.0.0.1] [Notice(8): Undefined variable: city_selected_first] [FILE: /modules/samples/admin/main.php] [LINE: 214]
+[Wed, 17 Mar 2021 20:46:24 +0700] [nukeviet.my] [127.0.0.1] [Notice(8): Undefined variable: district_selected_first] [FILE: /modules/samples/admin/main.php] [LINE: 215]
+[Wed, 17 Mar 2021 20:46:24 +0700] [nukeviet.my] [127.0.0.1] [Notice(8): Undefined variable: id_city] [FILE: /modules/samples/admin/main.php] [LINE: 217]
+[Wed, 17 Mar 2021 20:46:24 +0700] [nukeviet.my] [127.0.0.1] [Notice(8): Undefined variable: id_city] [FILE: /modules/samples/admin/main.php] [LINE: 234]
+[Wed, 17 Mar 2021 21:42:59 +0700] [nukeviet.my] [127.0.0.1] [Notice(8): Undefined variable: xhtml_city] [FILE: /modules/samples/admin/main.php] [LINE: 173]
+[Wed, 17 Mar 2021 21:42:59 +0700] [nukeviet.my] [127.0.0.1] [Notice(8): Undefined variable: xhtml_district] [FILE: /modules/samples/admin/main.php] [LINE: 174]
+[Wed, 17 Mar 2021 21:42:59 +0700] [nukeviet.my] [127.0.0.1] [Notice(8): Undefined variable: check] [FILE: /modules/samples/admin/main.php] [LINE: 175]
+[Wed, 17 Mar 2021 21:42:59 +0700] [nukeviet.my] [127.0.0.1] [Notice(8): Undefined variable: uncheck] [FILE: /modules/samples/admin/main.php] [LINE: 176]
+[Wed, 17 Mar 2021 21:42:59 +0700] [nukeviet.my] [127.0.0.1] [Notice(8): Undefined variable: city_selected_first] [FILE: /modules/samples/admin/main.php] [LINE: 177]
+[Wed, 17 Mar 2021 21:42:59 +0700] [nukeviet.my] [127.0.0.1] [Notice(8): Undefined variable: district_selected_first] [FILE: /modules/samples/admin/main.php] [LINE: 178]
+[Wed, 17 Mar 2021 21:42:59 +0700] [nukeviet.my] [127.0.0.1] [Notice(8): Undefined variable: id_city] [FILE: /modules/samples/admin/main.php] [LINE: 180]
+[Wed, 17 Mar 2021 21:42:59 +0700] [nukeviet.my] [127.0.0.1] [Notice(8): Undefined variable: id_city] [FILE: /modules/samples/admin/main.php] [LINE: 197]
+[Wed, 17 Mar 2021 21:43:08 +0700] [nukeviet.my] [127.0.0.1] [Notice(8): Undefined index: Email chưa đúng quy tắc] [FILE: /modules/samples/admin/main.php] [LINE: 70]
+[Wed, 17 Mar 2021 21:43:12 +0700] [nukeviet.my] [127.0.0.1] [Notice(8): Undefined index: Số điện thoại chưa đúng quy tắc] [FILE: /modules/samples/admin/main.php] [LINE: 76]
+[Wed, 17 Mar 2021 21:47:48 +0700] [nukeviet.my] [127.0.0.1] [Notice(8): Undefined index: Email chưa đúng quy tắc] [FILE: /modules/samples/admin/main.php] [LINE: 56]
+[Wed, 17 Mar 2021 21:47:48 +0700] [nukeviet.my] [127.0.0.1] [Notice(8): Undefined index: Số điện thoại chưa đúng quy tắc] [FILE: /modules/samples/admin/main.php] [LINE: 62]
