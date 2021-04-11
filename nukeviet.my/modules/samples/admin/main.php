@@ -14,6 +14,12 @@ if (!defined('NV_IS_FILE_ADMIN')) {
 
 $page_title = $lang_module['main'];
 
+$db->sqlreset()
+->select('COUNT(*)')
+->from(NV_PREFIXLANG . "_". $module_data);
+$sql = $db->sql();
+$max_weight = $db->query($sql)->fetchColumn();
+
 $post = $error = [];
 
 if ($nv_Request->isset_request("change_city", "post,get")) {
@@ -77,13 +83,14 @@ if (!empty($post['submit'])) {
             $sql = "UPDATE ".NV_PREFIXLANG."_".$module_data. " SET fullName=:fullName,email=:email,phone=:phone,sex=:sex,city=:city,district=:district,updatetime=:updatetime WHERE id= ".$post['id'];
             $stmt = $db->prepare($sql);
             $stmt->bindValue("updatetime", 0);
-        } else {
+        } elseif (empty($post['id'])) {
             //insert
             $sql = "INSERT INTO `nv4_vi_samples`(`fullName`, `email`, `phone`, `sex`, `city`, `district`, `active`, `addtime`, `updatetime`, `weight`) VALUES (:fullName,:email,:phone,:sex,:city,:district,:active,:addtime,:updatetime,:weight)";
             $stmt = $db->prepare($sql);
             $stmt->bindValue("active", 1);
-            $stmt->bindValue("weight", 1);
+            $stmt->bindValue("weight", $max_weight + 1);
             $stmt->bindValue("addtime", NV_CURRENTTIME);
+            $stmt->bindValue("updatetime", 0);
         }
 
         $stmt->bindParam("fullName", $post['fullName']);
